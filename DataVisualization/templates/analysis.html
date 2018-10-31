@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type = "text/css" href="{% static 'DataVisualization/hpstyling.css' %}">
+        <link href="{% static 'DataVisualization/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <script src = "{% static 'DataVisualization/firstjs.js' %}">  </script>
+        <title> Analyze your tweets</title>
+    </head>
+
+    <body>
+        <form method = "POST">
+            <div  class = "container headers">
+                <div class ="jumbotron">
+                    <div class="text-center">
+                        <h3 id = "mainhead" style="font-weight:900;color:white;font-family:Arial, Helvetica, sans-serif;font-size: 6em;">Analyze your tweets! </h3>
+                        <input type="text" class="form-control input-lg" name="twitter_handle" placeholder="twitter handle" required> 
+            
+                        <br>
+            
+                        <input type="text" class="form-control input-lg" name="number" placeholder="number of tweets to analyze" required> 
+
+                        <br>
+                        <label for= 'select button' style = "font-weight:900;color:white;font-family:Arial, Helvetica, sans-serif;">Select your timezone</label>
+                        <select id = 'select button' name = 'timezones' required>
+                            <option value = 'US/Eastern'> Eastern </option>
+                            <option value = 'US/Central'> Central </option>
+                            <option value = 'US/Mountain'> Mountain</option>
+                            <option value = 'US/Pacific'>Pacific </option>
+                        </select>
+                
+                        <br><br>
+            
+                        <input type="submit" >
+                        <input type="reset">
+                        
+                        <div style = "margin-top: 100px;">
+                            <p class = "smalltwitterliketext" style="text-align:right"> Number of tweets retrieved: {{numberoftweetsretrieved}}</p>
+                        </div>
+                    {% csrf_token %}
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <h2 class = "sectionheaders" id = "sentimentstatisticsheader" style = "margin-top: 100px"> {{sentimentstatisticsheader}} </h2>
+        </div>
+            
+            
+            
+
+        <div class = "graph">
+                <div class = "fatgraphheaders">
+                    <p class = "graphheaders" > {{sentimentgraphheader}} </p></div>
+                {{ overallsentiment|safe }}
+                <div class = graphexplanations>
+                    <p class = "explanations"> {{rangeslidertext}}  </p> 
+                </div>
+        </div>
+
+            
+        
+                
+
+        <div class = "graph">
+                <div class = "fatgraphheaders" > 
+                        <p class = "graphheaders"> {{weekdayandmonthlysentimentheader}} </p>
+                </div>
+                {{weekday_and_monthly_sentiment|safe}}
+        </div>
+
+            
+            
+            
+            
+        <div id = "wordcloud">   
+            <p class = "graphheaders"> {{wordcloudheader}} </p>
+            <div class = "buttons" >
+                    <button id = "showoverall" onclick="showoverall()"> Show overallcloud</button>
+                    <button id = "showothers" onclick="showothers()"> Show positive and negative cloud </button>
+            </div>
+
+
+            <div class = "container1"> 
+                    <img  class = "image" style = "display: block" id = 'overall' src= {{overallcloudpath}} alt="too few words to generate overall cloud">
+            </div>
+
+            
+            <div class = 'container2'>
+                <div class = 'container3'>
+                        <img class = "image" style = "display: none" id = 'negative' src={{negativecloudpath}} alt="too few words to generate negativecloud"> 
+                        <figcaption id = "negativetext" style = "display: none;font-weight:900;color:white;font-family:Arial, Helvetica, sans-serif;"> Negative Cloud</figcaption>
+                </div>
+
+                <div class = 'container3'>
+                        <img class = "image" style = "display: none" id = 'positive' src= {{positivecloudpath}} alt="too few words to generate positivecloud">
+                        <figcaption id = "positivetext" style = "display: none;font-weight:900;color:white;font-family:Arial, Helvetica, sans-serif;"> Positive Cloud </figcaption>
+                </div>
+                    
+                    
+            </div>
+        </div> 
+
+            
+            
+        <div>
+            <h2 class = "sectionheaders" id = "generaltweetstatisticsheader"> {{generaltweetstatisticsheader}} </h2>
+        </div>
+            
+            
+        
+
+        <div class = "graph">
+            <div class = "fatgraphheaders">
+                <p class = "graphheaders" > {{tweetcountpermonthheader}} </p>
+            </div>
+            {{ tweet_count_per_month|safe }}
+        </div>
+
+            
+            
+             
+        <div class = "graph">
+            <div class = "fatgraphheaders">
+                <p class = "graphheaders"> {{tweetcountperhour_month_weekdayheader}} </p>
+            </div>
+                {{per_hour_weekday_month_graph|safe}}
+            <div class = "graphexplanations">
+                <p class = "explanations" > {{tweetcountperhour_month_weekdayexp}} </p>
+            </div>
+        </div>
+            
+            
+
+            
+        
+        
+        <div class = "graph">
+            <div class ="fatgraphheaders">
+                <p class = "graphheaders" > {{tweetcountperhourpermonthheader}}</p>
+            </div>
+            {{perhourovertimegraph|safe}}
+            <div class = "graphexplanations">
+                <p class = "explanations"> {{tweetcountperhourpermonthtext}} </p>
+            </div>
+        </div>
+       
+
+        
+           
+            
+            
+            
+            
+        <div>
+            <h1 class = "sectionheaders"> {{interactionsheader}} </h1> 
+        </div>
+        
+        <div class = "graph"> 
+            <div class = "fatgraphheaders">
+                <p class = "graphheaders"> {{medianfavandrtheader}} </p>
+            </div>
+            
+            {{retweet_favorite_per_hour|safe}}
+        </div>
+
+        <div class = "graph"> 
+            <div class = "fatgraphheaders">
+                <p class = "graphheaders"> {{topfivespeceficinteractionsheader}} </p>
+            </div>
+            
+            {{get_all_interactions_graph|safe}}
+        </div>
+        
+        <div class = "graph"> 
+            <div class = "fatgraphheaders">
+                <p class = "graphheaders"> {{topfiveoverallheader}} </p>
+            </div>
+            
+            {{get_summed_interactions_graph|safe}}
+        </div>
+
+        
+
+        
+        
+        
+
+        
+        
+            
+    </body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type = "text/css" href="{% static 'DataVisualization/hpstyling.css' %}">
+        <link href="{% static 'DataVisualization/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <title> Analyze your tweets</title>
+    </head>
+
+    <body>
+        <form method = "POST" action = '/analysis/'>
+            <div class = "container headers">
+                <div class ="jumbotron">
+                    <div class="text-center">
+                        <h3 style="font-weight:900;color:white;font-family:Arial, Helvetica, sans-serif;font-size: 6em;">Analyze your tweets! </h3>
+                        <input type="text" class="form-control input-lg" name="twitter_handle" placeholder="twitter handle" required> 
+            
+                        <br>
+            
+                        <input type="text" class="form-control input-lg" name="number" placeholder="number of tweets to analyze" required> 
+
+                        <br>
+                        <label for= 'select button' style = "font-weight:900;color:white;font-family:Arial, Helvetica, sans-serif;">Select your timezone</label>
+                        <select id = 'select button' name = 'timezones' required>
+                            <option value = 'US/Eastern'> Eastern </option>
+                            <option value = 'US/Central'> Central </option>
+                            <option value = 'US/Mountain'> Mountain</option>
+                            <option value = 'US/Pacific'>Pacific </option>
+                        </select>
+                
+                        <br><br>
+            
+                        <input type="submit" >
+                        <input type="reset">
+                        <div>
+                            <p style = "text-align: center;color:red;font-family: Arial, Helvetica, sans-serif;font-size: 2em;font-weight: 900"> {{errormessage}} </p>
+                        </div>
+                    {% csrf_token %}
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        
+       
+        <footer class = 'footers'>
+            <p class = 'explanations'> made by: Zumaad Khan</p>
+            <p class = 'explanations'> handle: @zumaadk</p>
+            <p class = 'explanations'> github: <a href = 'https://github.com/zumaad/repositories' style = 'color: white'> https://github.com/zumaad/repositories</a></p>
+        </footer>
+        
+    
+
+        
+
+
+        
+            
+    </body>
+
+</html>
