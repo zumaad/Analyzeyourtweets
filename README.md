@@ -34,6 +34,10 @@ based on the retweet/favorite count of your tweets and the people you interact w
 
 
 ## How does it do it?
-There are 5 main process to get from the tweets you see on screen 
-![Image of a tweet]
-(Analyzeyourtweets/tweet.png)
+There are 5 main steps to get from the tweets you see on screen 
+
+![picture of a tweet](tweet.png)
+
+to a graph like this
+
+![picture of a graph](graph.png)
