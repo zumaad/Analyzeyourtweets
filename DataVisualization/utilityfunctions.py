@@ -10,15 +10,13 @@ def cleanatweet(tweet):
     return cleanedtweet
 
 
-    
+
+ 
 #cleans one tweet -helper for cleanatweet()
 def cleansentence(tweet):
     dirtytweet = tweet.split(' ')
-    cleanedtweet = ''
-    for word in dirtytweet:
-        if not word.startswith('RT') and not word.startswith('@') and not word.startswith('http'):
-            cleanedtweet = cleanedtweet + ' ' + word
-    return cleanedtweet
+    return ' '.join([word for word in dirtytweet if not word.startswith('@') and not word.startswith('RT') and not word.startswith('http')])
+
 
 
 analyser = SentimentIntensityAnalyzer()
