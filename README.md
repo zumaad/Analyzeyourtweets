@@ -68,11 +68,7 @@ There are parts of this code that will be explained later. This is the way I get
 ~~~~
 def cleansentence(tweet):
     dirtytweet = tweet.split(' ')
-    cleanedtweet = ''
-    for word in dirtytweet:
-        if not word.startswith('RT') and not word.startswith('@') and not word.startswith('http'):
-            cleanedtweet = cleanedtweet + ' ' + word
-    return cleanedtweet
+    return ' '.join([word for word in dirtytweet if not word.startswith('@') and not word.startswith('RT') and not word.startswith('http')])
 ~~~~
 
 This methods cleans a tweet by building a string without any of the "dirty" elements on the tweet that muddle it's meaning 
