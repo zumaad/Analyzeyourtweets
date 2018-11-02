@@ -41,3 +41,39 @@ There are 5 main steps to get from the tweets you see on screen
 to a graph like this
 
 ![picture of a graph](graph.png)
+
+The 5 steps are:
+- getting the tweets
+- cleaning the tweets
+- modeling the tweets
+- creating axes of the graph
+- Output!
+
+### getting the tweets
+
+~~~~
+def gettweets(name,num,timezone):
+        tweets = tweepy.Cursor(api.user_timeline,screen_name = name,tweet_mode = 'extended').items(num)
+        tweetlist =[]
+        
+        for tweet in tweets:
+                mytweet = tweetzz(timezone,tweet,name)
+                tweetlist.append(mytweet)
+        
+        return tweetlist
+~~~~
+There are parts of this code that will be explained later. This is the way I get tweets. The first line after the method declaration is a method call from the tweepy library (discussed below) that makes http requests to the twitter api and gets data back in json form. It then parses that data and puts it in a object that models a tweet. api.user_timeline() returns an iterable which has a bunch of those "tweet" objects which I then extract and use to create my own model of a tweet object which is of class tweetzz. Those new tweet objects (mine) are then added to a list for later reference. 
+
+### cleaning a tweet
+~~~~
+def cleansentence(tweet):
+    dirtytweet = tweet.split(' ')
+    cleanedtweet = ''
+    for word in dirtytweet:
+        if not word.startswith('RT') and not word.startswith('@') and not word.startswith('http'):
+            cleanedtweet = cleanedtweet + ' ' + word
+    return cleanedtweet
+~~~~
+
+This methods cleans a tweet by building a string without any of the "dirty" elements on the tweet that muddle it's meaning 
+when analyzing sentiment/outputing the text. When a user retweets a tweet, the text that tweepy returns has something along the lines of RT @handle blah blah blah. When it comes to analyzing the sentiment of the tweet you want the tweet to have less/none of these symbols which have either no meaning or a unintuitive/inapplicable meaning to the sentiment analyzer which can make the score it returns incorrect. This also applies when a user links something or mentions someone, etc. 
