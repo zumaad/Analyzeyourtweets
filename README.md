@@ -157,4 +157,14 @@ line = go.Scatter(
 As for how you actually see this graph this graph in the web interface, plotly conveniently has an option to output the graph as html.
 
 
-### Software used
+### Software used (All Python)
+
+- Django, a python webframework.
+- Tweepy, for using the twitter api with a python interface.
+- Plotly, for generating the graphs.
+- Wordcloud, python library for generating wordclouds (who would've guessed)
+- Vader Sentiment, python library for sentiment analysis.
+- Boto, a python library for interacting with the amazon storage (s3) api. 
+- AWS elastic beanstalk for actually deploying the website and handling a lot else like load balancing,auto-scaling, capacity provisioning,application health monitoring,etc.
+
+
