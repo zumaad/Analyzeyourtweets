@@ -159,7 +159,7 @@ As for how you actually see this graph this graph in the web interface, plotly c
 
 ### Software used (All Python)
 
-- Django, a python webframework.
+- Django, a python web framework.
 - Tweepy, for using the twitter api with a python interface.
 - Plotly, for generating the graphs.
 - Wordcloud, python library for generating wordclouds (who would've guessed)
