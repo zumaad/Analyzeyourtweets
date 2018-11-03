@@ -2,6 +2,17 @@
 A website where you can type your twitter handle and have your tweets analyzed. This README will describe some of the functionality of the web app by taking you through the process of turning a bunch of tweets to a simple graph plotting some desired information.
 
 
+# Navigation
+
+- [Sentiment Data](#sentiment-data)
+- [General Data](#general-data)
+- [Interactions Data](#interactions-data)
+- [How does it work](#how-does-it-do-it)
+- [Software used](#software-used)
+
+
+
+
 ## What Exactly Does the application Do?
 
   The general purpose of this web-app is to return interesting data/statistics about your tweets in three
@@ -25,11 +36,18 @@ tweets per hour which models your tweeting behaviour throughout the day and show
 or least, tweets per month, tweets per hour based on month (allows you to see trends in your tweeting behavior such as tweeting later in the day in the summer months if you are still in school), and more. 
                 
 ### Interactions Data
+A interaction is belongs to one or more of these categories
+- reply
+- favorite
+- quote
+- retweet
+- mention
 
-  Interactions Data is data that deals with quotes,retweets,mentions,favorites, and replies. Interactions go both ways,
-you can interact with others, and others can interact with you. Unfortunately, twitter makes it 
-hard/impossible (unless you pay) to get information about tweets you favorite and the interactions
-with your tweets other than the retweet/favorite count of a tweet. As such, this website returns statistics
+Interactions go both ways. You interact with other peoples' tweets and they interact with yours. In terms of getting how a user interacts, almost all data is made avaiable by the twitter api. The exception is getting the tweets a person favorited, its heavily rate-limited and unless you want to pay, you won't be able to get much favorite data.
+
+When it comes to seeing how others interact with your tweets, twitter makes it even harder as the only information you can see without paying is the favorite and retweet count of your tweet (not anything else or the names of the people who interacted with your tweet, etc).
+
+As such, this website returns statistics
 based on the retweet/favorite count of your tweets and the people you interact with (reply,quote,mention,and retweet). Examples of such data include but are definitely not limited to: the top 5 people you interact with and the amount of favorites/retweets you get based on time in the hour posted - this shows you what time to post your tweets if you want the best chance of getting the most interactions.
 
 
@@ -157,7 +175,7 @@ line = go.Scatter(
 As for how you actually see this graph this graph in the web interface, plotly conveniently has an option to output the graph as html.
 
 
-### Software used (All Python)
+### Software used
 
 - Django, a python web framework.
 - Tweepy, for using the twitter api with a python interface.
