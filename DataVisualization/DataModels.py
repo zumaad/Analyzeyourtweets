@@ -10,13 +10,76 @@ from DataVisualization.utilityfunctions import cleanatweet,sentiments,putstexton
 
 
 
-
-#classes and functions/methods for organizing data. Used in some of the graphs
-
 class tweetzz():
+    """ class to represent a tweet. Used to store information about a tweet like its text,author,etc to retrieve later
+    
+    Attributes
+    -----------
+    tweetername : str
+        the author of the tweet
+    timezone : Datetime
+        timezone of the tweet
+    text : str
+        the text of the tweet
+    time : Datetime
+        a datetime object representing the time of the tweet
+    year: int
+        year of the tweet
+    month: int
+        month of the tweet
+    day: int
+        day of the tweet
+    weekday: str
+        weekday of the tweet
+    sentiment: int
+        sentiment score of a tweet
+    replyto : str
+        the twitter handle the tweet is in reply to
+    retweetofwhom : str
+        the twitter handle the tweet is a retweet of
+    quoteof: str
+        the twitter handle the tweet is a quote of
+    mentions: list 
+        list of the twitter handles the tweet mentions
+    retweetcount: int
+        the amount of times a tweet has been retweeted
+    favoritecount : int
+        the amount of times a tweet has been favorited
+    length : int
+        the character length of a tweet
+       
+    Methods
+    -------
+    
+    fixtime(time,timezone)
+        fixes the time of a tweet in accordance with the timezone given.
+    
+    getretweetof(tweetobj)
+        gets twitter handle of the user the tweet is a retweet of
+    
+    getquoteof(tweetobj)
+        gets twitter handle of the user the tweet is a retweet of
+        
+    get_fav_rt_count_of_only_wanted_user_tweets(self,tweetobj)
+        gets favorite and retweet count of a tweet, only if it isn't a retweet
+    """
+   
+
     #gets relevant info from a tweet and ecapsulates it so that it can be
     #accessed cleanly later on to display data.
     def __init__(self,timezone,tweetobj,name):
+        """
+        Parameters
+        ----------
+        
+        timezone : str
+            the timezone the tweet should be in.
+        tweetobj: Tweepy Status Object
+            represents the data that tweepy gets about a tweet from the twitter api
+        name: str
+            the name of the author of the tweet
+        """
+            
         self.tweetername = name
         self.timezone = timezone
         self.text = cleanatweet(tweetobj.full_text)
