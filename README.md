@@ -2,6 +2,9 @@
 [Tweetlyze.info](http://tweetlyze.info)
 A website where you can type your twitter handle and have your tweets analyzed. This README will describe some of the functionality of the web app by taking you through the process of turning a bunch of tweets to a simple graph plotting some desired information.
 
+# Demo
+https://youtu.be/SZQjOvRBkAE
+
 
 # Navigation
 
