@@ -1,5 +1,5 @@
 # Analyze your tweets
-[Tweetlyze.info](no longer deployed) (http://tweetlyze.info)
+[Tweetlyze.info](http://tweetlyze.info) no longer deployed.
 A website where you can type your twitter handle and have your tweets analyzed. This README will describe some of the functionality of the web app by taking you through the process of turning a bunch of tweets to a simple graph plotting some desired information.
 
 # Demo
